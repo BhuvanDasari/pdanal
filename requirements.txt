@@ -5,7 +5,7 @@ numpy
 
 scikit_learn
 scipy
-pickle 
+pickle-mixin 
 python-math 
 psycopg2 
 gunicorn 
