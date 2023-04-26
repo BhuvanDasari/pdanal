@@ -2,14 +2,14 @@ import json
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 import numpy as np
-from scipy.signal import butter, filtfilt, correlate, periodogram
+#from scipy.signal import butter, filtfilt, correlate, periodogram
 import datetime
 import pickle
-from sklearn.preprocessing import LabelEncoder
+#from sklearn.preprocessing import LabelEncoder
 import math
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://user_database_cmx4_user:Yv6hGck0QJXBZgWburCYjbk5P9OCqREf@dpg-ch4nj533cv23dkld2id0-a/user_database_cmx4'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False 
 
 db = SQLAlchemy(app)
