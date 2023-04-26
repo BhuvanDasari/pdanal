@@ -8,3 +8,4 @@ scipy==1.5.2
 pickle == 0.0.12 
 python-math == 0.0.1 
 psycopg2 == 2.9.6 
+gunicorn == 20.1.0 
