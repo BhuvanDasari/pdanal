@@ -109,15 +109,15 @@ def index():
 
 @app.route('/add',methods=['POST'])
 def add():
-    add_request = User(request.form.get('name'), 
-                  request.form.get('age'),request.form.get('device_id'),
-                  request.form.get('gender'),request.form.get('ldopa'),
-                  request.form.get('bmi'),request.form.get('rr'),
-                  request.form.get('basetemp'),request.form.get('handtemp'),
-                  request.form.get('thirdfingertemp'),request.form.get('dia'),
-                  request.form.get('height'),request.form.get('weight'),
-                  request.form.get('heartrate'),request.form.get('orthohypo'),
-                  request.form.get('subhypo'),request.form.get('arthype'))
+    add_request = User(name = request.form.get('name'), 
+                  age = request.form.get('age'),device_id = request.form.get('device_id'),
+                  gender = request.form.get('gender'),ldopa = request.form.get('ldopa'),
+                  bmi = request.form.get('bmi'),rr = request.form.get('rr'),
+                  basetemp = request.form.get('basetemp'),handtemp = request.form.get('handtemp'),
+                  thirdfingertemp = request.form.get('thirdfingertemp'),dia = request.form.get('dia'),
+                  height = request.form.get('height'),weight = request.form.get('weight'),
+                  heartrate = request.form.get('heartrate'),orthohypo = request.form.get('orthohypo'),
+                  subhypo = request.form.get('subhypo'),arthype = request.form.get('arthype'))
     
 
     user = User.query.filter_by(device_id = request.form.get('device_id')).first()
