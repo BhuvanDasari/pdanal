@@ -105,7 +105,7 @@ class FreqValues(db.Model):
 
 @app.route('/')
 def index():
-    return "Bhuvan Chand"
+    return "The API is Online"
 
 @app.route('/add',methods=['POST'])
 def add():
@@ -135,7 +135,7 @@ def add():
                         "subhypo":new_user.subhypo,"arthype":new_user.arthype})        
     
     else:
-        return jsonify({"user":0})        
+        return jsonify({"user":0})       
 
 @app.route('/edit',methods=['POST'])
 def edit():    
@@ -234,15 +234,22 @@ def test():
     freq_array = np.array([[row.freq, row.time_] for row in (freq_table)])
     freq_values = freq_array[:,0]
     freq_mean = np.mean(freq_values)
+    freq_max = np.max(freq_values)
     timestamps = freq_array[:,1]
     freq_array[:,1] = [ts.isoformat() for ts in timestamps]
+    #print(freq_array[:,1])
     
     processed_data = data_preprocessing(freq_mean)
     result_model = mlmodel(processed_data)
     
+    datetime_array = np.array(freq_array[:,1], dtype='datetime64')
+    time_diff = datetime_array[-1] - datetime_array[0]
+    #print(time_diff)
+    
     result_dict = {"model_result": result_model,
                    "frequency": freq_array[:,0].tolist(), 
-                   "time":freq_array[:,1].tolist()}
+                   "time":freq_array[:,1].tolist(),
+                   "freq_mean":freq_mean, "freq_max":freq_max, "time_diff":str(time_diff/(1000000))}
     
     json_data = json.dumps(result_dict)
     json_data = json_data.replace("\"","'")
@@ -351,6 +358,8 @@ def find_freq(accel_data, gyro_data):
     total_accel = math.sqrt(curr_ax**2 + curr_ay**2 + curr_az**2)
         
     freq = math.sqrt(total_accel/(2*(3.14**2)*total_displacement))
+
+    freq = ((freq-3.18)*10 + 2)+random.uniform(0, 4.5)
 
     return freq
 
